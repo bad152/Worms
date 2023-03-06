@@ -5,7 +5,7 @@ public class Main extends JFrame{
     public Main(){
         setTitle("Worms");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(320,345);
+        setSize(350,374);
         setLocation(500,100);
         add(new GameField());
         setVisible(true);

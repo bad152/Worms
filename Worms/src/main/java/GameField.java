@@ -70,7 +70,7 @@ public class GameField extends JPanel implements ActionListener {
         }else {
             String str = "Ты проиграл ха-ха";
             g.setColor(Color.white);
-            g.drawString(str, 100, SIZE / 2);
+            g.drawString(str, 120, SIZE / 2);
         }
     }
 
