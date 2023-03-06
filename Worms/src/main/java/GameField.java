@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 
-public class GameField extends JPanel {
+public class GameField extends JPanel implements ActionListener {
     private final int SIZE = 320;
     private final int DOT_SIZE = 16;
     private final int ALL_DOTS = 400;
@@ -24,6 +27,22 @@ public class GameField extends JPanel {
     public GameField(){
         setBackground(Color.black);
         loadImages();
+        initGame();
+    }
+
+    public void initGame(){
+        dots = 3;
+        for (int i = 0; i < dots; i++){                 //Построение начального червя из 3 единиц
+            x[i] = 48 - i * DOT_SIZE;
+            y[i] = 48;
+        }
+        timer = new Timer(250, this);
+        timer.start();
+        createApple();
+    }
+    public void createApple(){
+        appleX = new Random().nextInt(20)*DOT_SIZE; //Рандомное создание яблока на поле
+        appleY = new Random().nextInt(20)*DOT_SIZE;
     }
 
     public void loadImages(){
@@ -31,5 +50,46 @@ public class GameField extends JPanel {
         apple = iia.getImage();
         ImageIcon iid = new ImageIcon("dot.png");
         dot = iid.getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (inGame){
+            g.drawImage(apple, appleX, appleY,this);
+            for (int i = 0; i < dots; i++) {
+                g.drawImage(dot,x[i],y[i],this);
+
+            }
+        }
+    }
+
+    public void move(){
+        for(int i = dots; i > 0; i--) {
+            x[i] = x[i-1];
+            y[i] = y[i-1];
+        }
+        if(left){
+            x[0] -= DOT_SIZE;
+        }
+        if(right){
+            x[0] += DOT_SIZE;
+        }
+        if(up){
+            y[0] -= DOT_SIZE;
+        }
+        if(down){
+            y[0] += DOT_SIZE;
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {           //Метод обновления таймера(В игре ли находится игрок)
+        if(inGame){
+            move();
+
+
+        }
+        repaint();
     }
 }
