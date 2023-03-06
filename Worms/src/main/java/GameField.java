@@ -83,9 +83,38 @@ public class GameField extends JPanel implements ActionListener {
         }
     }
 
+    public void checkApple(){                   //Проверка на сьедания червем яблока, рост червяка и генерация новго яблока
+        if(x[0] == appleX && y[0] == appleY){
+            dots++;
+            createApple();
+        }
+    }
+
+    public void checkCollisions(){              //Проверка на столкновения с рамками игрового окна и столкновения с самим собой
+        for (int i = dots; i > 0; i--) {
+            if(i > 4 && x[0] == x[i] && y[0] == y[i]){
+                inGame = false;
+            }
+        }
+        if (x[0] > SIZE){
+            inGame = false;
+        }
+        if (x[0] < 0){
+            inGame = false;
+        }
+        if (y[0] > SIZE){
+            inGame = false;
+        }
+        if (y[0] < 0){
+            inGame = false;
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {           //Метод обновления таймера(В игре ли находится игрок)
         if(inGame){
+            checkCollisions();
+            checkApple();
             move();
 
 
