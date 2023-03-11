@@ -18,14 +18,13 @@ public class GameField extends JPanel implements ActionListener {
     private int[] x = new int[ALL_DOTS];
     private int[] y = new int[ALL_DOTS];
     private int dots;
+
     private Timer timer;
     private boolean left = false;
     private boolean right = true;
     private boolean up = false;
     private boolean down = false;
     private boolean inGame = true;
-
-
 
 
 
@@ -62,7 +61,23 @@ public class GameField extends JPanel implements ActionListener {
         dot = iid.getImage();
     }
 
-    Image fon = new ImageIcon("fon.jpg").getImage();
+
+
+        public void TextFieldExample() {
+            JTextField tf1;
+            tf1 = new JTextField("Твой счет: " + dots);
+            tf1.setBounds(120, 200, 100, 20);
+            tf1.setEditable(false);
+            add(tf1);
+            setVisible(true);
+
+        }
+
+
+
+        Image fon = new ImageIcon("fon.jpg").getImage();
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -77,6 +92,7 @@ public class GameField extends JPanel implements ActionListener {
 
 
         }else {
+            TextFieldExample();
             String str = "Ты проиграл ха-ха";
             Font f = new Font("Arial",Font.BOLD, 10);
             g.setFont(f);
@@ -156,7 +172,6 @@ public class GameField extends JPanel implements ActionListener {
             checkCollisions();
             checkApple();
             move();
-
 
         }
         repaint();
