@@ -27,6 +27,8 @@ public class GameField extends JPanel implements ActionListener {
 
 
 
+
+
     public GameField(){
         setBackground(Color.BLACK);
         loadImages();
@@ -34,8 +36,6 @@ public class GameField extends JPanel implements ActionListener {
         addKeyListener(new FieldKeyListener());
         setFocusable(true);
     }
-
-
 
 
     public void initGame(){
@@ -52,6 +52,8 @@ public class GameField extends JPanel implements ActionListener {
         appleX = new Random().nextInt(20)*DOT_SIZE; //Рандомное создание яблока на поле
         appleY = new Random().nextInt(20)*DOT_SIZE;
     }
+
+
 
     public void loadImages(){
         ImageIcon iia = new ImageIcon("apple.png");
@@ -76,8 +78,29 @@ public class GameField extends JPanel implements ActionListener {
 
         }else {
             String str = "Ты проиграл ха-ха";
+            Font f = new Font("Arial",Font.BOLD, 10);
+            g.setFont(f);
             g.setColor(Color.white);
             g.drawString(str, 120, SIZE / 2);
+
+
+            JButton restart = new JButton();
+            restart.setText("Restart");
+            restart.setSize(100,20);
+            restart.setLocation(120,170);
+
+            ActionListener AListener1 = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    add(new Main());
+
+                }
+            };
+            restart.addActionListener(AListener1);
+            add(restart);
+
+
+
         }
     }
 
