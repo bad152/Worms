@@ -26,13 +26,17 @@ public class GameField extends JPanel implements ActionListener {
     private boolean inGame = true;
 
 
+
     public GameField(){
-        setBackground(Color.black);
+        setBackground(Color.BLACK);
         loadImages();
         initGame();
         addKeyListener(new FieldKeyListener());
         setFocusable(true);
     }
+
+
+
 
     public void initGame(){
         dots = 3;
@@ -56,10 +60,13 @@ public class GameField extends JPanel implements ActionListener {
         dot = iid.getImage();
     }
 
+    Image fon = new ImageIcon("fon.jpg").getImage();
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (inGame){
+            Graphics2D gr = (Graphics2D)g;
+            gr.drawImage(fon,0,0,null);
             g.drawImage(apple, appleX, appleY,this);
             for (int i = 0; i < dots; i++) {
                 g.drawImage(dot,x[i],y[i],this);
