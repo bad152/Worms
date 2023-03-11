@@ -90,18 +90,38 @@ public class GameField extends JPanel implements ActionListener {
 
             }
 
-
         }else {
             TextFieldExample();
-            String str = "Ты проиграл ха-ха";
-            Font f = new Font("Arial",Font.BOLD, 10);
-            g.setFont(f);
-            g.setColor(Color.white);
-            g.drawString(str, 120, SIZE / 2);
+            if (dots <= 12){
+                String str = "Тебе еще тренироваться и тренироваться...";
+                Font f = new Font("Arial",Font.BOLD, 10);
+                g.setFont(f);
+                g.setColor(Color.white);
+                g.drawString(str, 60, SIZE / 2);
+            }else if (dots <= 25 && dots < 26){
+                String str = "Неплохо двигаешь";
+                Font f = new Font("Arial",Font.BOLD, 10);
+                g.setFont(f);
+                g.setColor(Color.white);
+                g.drawString(str, 120, SIZE / 2);
+            }else if (dots <= 40 && dots < 41){
+                String str = "Вау, а ты хорош";
+                Font f = new Font("Arial",Font.BOLD, 10);
+                g.setFont(f);
+                g.setColor(Color.white);
+                g.drawString(str, 120, SIZE / 2);
+            }else if (dots >= 41){
+                String str = "Победитель";
+                Font f = new Font("Arial",Font.BOLD, 10);
+                g.setFont(f);
+                g.setColor(Color.white);
+                g.drawString(str, 120, SIZE / 2);
+            }
 
 
             JButton restart = new JButton();
             restart.setText("Restart");
+
             restart.setSize(100,20);
             restart.setLocation(120,170);
 
